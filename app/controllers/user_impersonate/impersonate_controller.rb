@@ -132,12 +132,20 @@ module UserImpersonate
 
     def redirect_on_impersonate(impersonated_user)
       url = config_or_default :redirect_on_impersonate, root_url
-      redirect_to url
+      if url.respond_to?(:call)
+        redirect_to self.instance_exec(&url)
+      else
+        redirect_to url
+      end
     end
 
     def redirect_on_revert(impersonated_user = nil)
       url = config_or_default :redirect_on_revert, root_url
-      redirect_to url
+      if url.respond_to?(:call)
+        redirect_to self.instance_exec(&url)
+      else
+        redirect_to url
+      end
     end
 
     # gets overridden config value for engine, else returns default
