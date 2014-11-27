@@ -37,7 +37,7 @@ module UserImpersonate
         flash[:notice] = "You weren't impersonating anyone"
         redirect_on_revert and return
       end
-      user = current_staff
+      user = current_user
       revert_impersonate
       if user
         flash[:notice] = "No longer impersonating #{user}"
