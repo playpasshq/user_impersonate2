@@ -125,7 +125,7 @@ module UserImpersonate
     end
 
     def user_table
-      user_class_name.tableize.tr('/', '_')
+      user_class.table_name
     end
 
     def user_id_column
